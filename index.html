@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Semantic-UI</title>
+	<title>ChatApp</title>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/semantic.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/semantic.min.css"></script>
 </head>
 <body>
-	<nav class="ui menu">
+	<div class="ui red menu">
 		<h3 class="header item">All</h3>
-		<a class="item">user 1</a>
+		<a class="active item">user 1</a>
 		<a class="item">user 2</a>
 		<a class="item">user 3</a>
 		<a class="item">user 4</a>
 		<a class="item">user 5</a>
-	</nav>
+		<span class="floated right item">Signed in as <a href="#">User</a></span>
+	</div>
+	<div class="ui two column grid">
+		<div class="column">
+			<div class="ui message blue">
+				<div class="ui horizontal divider"><i class="wechat icon"></i></div>
+			 1
+			</div>
+		</div>
+		<div class="column">2</div>
+
+	</div>
 </body>
 </html>
