@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="ui red menu">
-		<h3 class="header item">All</h3>
+		<a class="header item">All</a>
 		<a class="active item">user 1</a>
 		<a class="item">user 2</a>
 		<a class="item">user 3</a>
@@ -18,15 +18,22 @@
 		<a class="item">user 5</a>
 		<span class="floated right item">Signed in as <a href="#">User</a></span>
 	</div>
-	<div class="ui two column grid">
-		<div class="column">
-			<div class="ui message blue">
-				<div class="ui horizontal divider"><i class="wechat icon"></i></div>
-			 1
+	<div class="ui form segment">
+		<div class="ui grid">
+			<div class="thirteen wide column">
+				<div class="ui message blue">
+					<div class="ui horizontal divider"><i class="wechat icon"></i></div>
+				1
+				</div>
 			</div>
+			<div class="three wide column">2</div>
 		</div>
-		<div class="column">2</div>
-
+		</br>
+		<div class="ui labeled input">
+			<div class="ui label">User</div>
+			<input placeholder="Enter your text here" name="userText" type="text"></input>
+			<button class="ui floated right blue submit button">Send</button>
+		</div>
 	</div>
 </body>
 </html>
