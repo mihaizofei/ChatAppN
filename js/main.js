@@ -10,6 +10,7 @@ var MainContainer = React.createClass({
 		return (
 			<div className='mainContainer'>
 				<Header />
+				<Body />
 			</div>
 		);
 	}
@@ -43,15 +44,13 @@ var Grid = React.createClass({
 			<div className="ui form segment">
 				<div className="ui two column equal height grid">
 					<div className="thirteen wide column">
-						<div className="ui message blue heightleft" style="overflow-y:scroll;">
+						<div className="ui message blue heightleft" styles="overflow-y:scroll;">
 							<div className="ui horizontal divider"><i className="wechat icon"></i></div>
-								<div className="ui comments">
-									<Comment />
-								</div>
+							<div className="ui comments">
+								<Comment />
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		);
@@ -63,15 +62,16 @@ var Comment = React.createClass({
 		return (
 			<div className="comment">
 				<a className="avatar">
-					<img src="images/man.png">
+					<img src="images/man.png"></img>
 				</a>
 				<div className="content">
 					<a className="author">Michael</a>
-				<div className="metadata">
-					<span className="date">Today at 5:42PM</span>
+					<div className="metadata">
+						<span className="date">Today at 5:42PM</span>
+					</div>
+					<div className="text">How artistic!</div>
 				</div>
-				<div className="text">How artistic!</div>
-			</div>
+			</div>	
 		);
 	}
 });		
