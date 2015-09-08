@@ -21,3 +21,7 @@ html, body {
 .ui.items>.item>.image+.content {
 	padding-left:0.3em;
 }
+
+a {
+	color: red;
+}
