@@ -5,4 +5,20 @@ $(function () {
 	})
 });
 
-var n = noty({text: 'noty - a jquery notification library!'});
+$(function () {
+	$('#sendButton').click(function(){
+		noty({
+			layout: 'topRight',
+			theme: 'relax',
+			text: 'Your message was send',
+			animation: {
+				open: 'animated bounceInLeft', 
+				close: 'animated bounceOutLeft', 
+				easing: 'swing', 
+				speed: 500 
+			},
+			killer: true,
+			closeWith: ['hover']
+});
+	})
+});
