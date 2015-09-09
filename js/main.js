@@ -9,16 +9,16 @@ $(function () {
 	$('#sendButton').click(function(){
 		noty({
 			layout: 'topRight',
-			theme: 'relax',
+			type: 'error',
 			text: 'Your message was send',
 			animation: {
-				open: 'animated bounceInLeft', 
-				close: 'animated bounceOutLeft', 
+				open: 'animated bounceInRight', 
+				close: 'animated bounceOutRight', 
 				easing: 'swing', 
 				speed: 500 
 			},
 			killer: true,
 			closeWith: ['hover']
-});
+		});
 	})
 });
