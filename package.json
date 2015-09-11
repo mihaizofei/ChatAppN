@@ -1,0 +1,23 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "chat application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihaizofei/ChatAppN.git"
+  },
+  "author": "c.m.zofei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mihaizofei/ChatAppN/issues"
+  },
+  "homepage": "https://github.com/mihaizofei/ChatAppN#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "noty": "^2.3.6"
+  }
+}
