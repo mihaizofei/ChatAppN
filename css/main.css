@@ -34,3 +34,7 @@ a {
 .ui.form.segment {
 	box-shadow:0 0 0 0;
 }
+
+.ui.message.grey {
+	overflow-y:auto;
+}

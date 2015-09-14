@@ -35,7 +35,7 @@ var Body = React.createClass({
 		return (
 			<div className="ui two column equal height grid">
 				<div className="thirteen wide column">
-					<div className="ui message grey heightleft" styles="{{'overflow-y':'scroll'}}">
+					<div className="ui message grey heightleft">
 						<div className="ui horizontal divider"><i className="wechat icon"></i></div>
 						<div className="ui comments">
 							<Comment />
@@ -44,7 +44,7 @@ var Body = React.createClass({
 					</div>
 				</div>
 				<div className="three wide column">
-					<div className="ui message grey heightright" styles="overflow-y:scroll;">
+					<div className="ui message grey heightright">
 						<div className="ui horizontal divider"><i className="users icon"></i></div>
 						<div className="ui list">
 							<User />
