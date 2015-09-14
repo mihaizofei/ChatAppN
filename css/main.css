@@ -12,10 +12,10 @@ html, body {
 }
 
 .heightleft{
-    height:800px;
+    height:820px;
 }
 .heightright{
-    height:800px;
+    height:820px;
 }
 
 .ui.items>.item>.image+.content {
@@ -24,4 +24,13 @@ html, body {
 
 a {
 	color: red;
+	padding-left: 5px;
+}
+
+.ui.labeled.input {
+	padding-top: 20px;
+}
+
+.ui.form.segment {
+	box-shadow:0 0 0 0;
 }

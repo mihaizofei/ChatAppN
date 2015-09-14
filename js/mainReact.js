@@ -1,29 +1,3 @@
-$(function () {
-	$('a.item').click(function(){
-		$('.item').removeClass('active');
-		$(this).addClass('active');
-	})
-});
-
-$(function () {
-	$('#sendButton').click(function(){
-		noty({
-			layout: 'topRight',
-			type: 'error',
-			text: 'Your message was send',
-			animation: {
-				open: 'animated bounceInRight', 
-				close: 'animated bounceOutRight', 
-				easing: 'swing', 
-				speed: 500 
-			},
-			killer: true,
-			closeWith: ['hover']
-		});
-	})
-});
-
-
 var MainContainer = React.createClass({
 	render: function() {
 		return (
@@ -43,14 +17,14 @@ var Header = React.createClass({
     return (
       <div className="ui labeled icon menu">
 		<a className="active red item">
-			<i class="users icon"></i>
+			<i className="users icon"></i>
 			All
 		</a>
 		<a className="red item">
 			<i className="user icon"></i>
 			Chris
 		</a>
-		<span className="floated right item">Signed in as <a href="#">Mike</a></span>
+		<span className="floated right item">Signed in as<a href="#">Mike</a></span>
 	</div>
     );
   }
@@ -61,7 +35,7 @@ var Body = React.createClass({
 		return (
 			<div className="ui two column equal height grid">
 				<div className="thirteen wide column">
-					<div className="ui message grey heightleft" styles="overflow-y:scroll;">
+					<div className="ui message grey heightleft" styles="{{'overflow-y':'scroll'}}">
 						<div className="ui horizontal divider"><i className="wechat icon"></i></div>
 						<div className="ui comments">
 							<Comment />
@@ -87,7 +61,7 @@ var User = React.createClass({
 	render: function() {
 		return (
 			<div className="item">
-				<a className="ui mini image"><img src="images/woman.png"></img></a>
+				<a className="ui mini image"><img src="./images/woman.png"></img></a>
 				<div className="middle aligned content">
 					<div className="header">Chris</div>
 				</div>
@@ -101,7 +75,7 @@ var Comment = React.createClass({
 		return (
 			<div className="comment">
 				<a className="avatar">
-					<img src="images/man.png"></img>
+					<img src="./images/man.png"></img>
 				</a>
 				<div className="content">
 					<a className="author">Michael</a>
@@ -121,11 +95,22 @@ var Footer = React.createClass({
 			<div className="ui labeled input">
 				<div className="ui black label">Mike</div>
 				<input placeholder="Enter your text here" name="userText" type="text"></input>
-				<button className="ui floated right black submit button" id="sendButton">Send</button>
+				<SendButton />
 			</div>
 		);
 	}
-});	
+});
+
+var SendButton = React.createClass({
+	handleClick: function(event) {
+		sendButtonClick();
+	},
+	render: function(){
+		return (
+			<button onClick={this.handleClick} className="ui floated right black submit button" id="sendButton">Send</button>
+		);
+	}
+});
 
 React.render(
   <MainContainer />,

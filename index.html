@@ -5,6 +5,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script type="text/jsx" src="js/mainReact.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script src="./node_modules/noty/js/noty/packaged/jquery.noty.packaged.min.js"></script>
 	<script type="text/javascript" src="./node_modules/noty/js/noty/layouts/topRight.js"></script>
@@ -15,78 +16,6 @@
 	<link rel="stylesheet" href="./css/main.css"></script>
 </head>
 <body>
-	<div class="ui labeled icon menu">
-		<a class="active red item">
-			<i class="users icon"></i>
-				All
-		</a>	
-		<a class="red item">
-			<i class="user icon"></i>
-			Chris
-		</a>
-		<span class="floated right item">Signed in as &nbsp <a href="#">Mike</a></span>
-	</div>
-	<div class="ui form segment">
-		<div class="ui two column equal height grid">
-			<div class="thirteen wide column">
-				<div class="ui message grey heightleft" style="overflow-y:scroll;">
-					<div class="ui horizontal divider"><i class="wechat icon"></i></div>
-					<div class="ui comments">
-						<div class="comment">
-							<a class="avatar">
-								<img src="./images/man.png">
-							</a>
-							<div class="content">
-								<a class="author">Mike</a>
-								<div class="metadata">
-									<span class="date">Today at 5:42PM</span>
-								</div>
-								<div class="text">How artistic!</div>
-							</div>
-						</div>
-						<div class="comment">
-							<a class="avatar">
-								<img src="./images/woman.png">
-							</a>
-							<div class="content">
-								<a class="author">Chris</a>
-								<div class="metadata">
-									<span class="date">Yesterday at 12:30AM</span>
-								</div>
-								<div class="text">
-									<p>This has been very useful for my research. Thanks as well!</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="three wide column">
-				<div class="ui message grey heightright" style="overflow-y:scroll;">
-					<div class="ui horizontal divider"><i class="users icon"></i></div>
-					<div class="ui list">
-						<div class="item">
-							<a class="ui mini image"><img src="./images/woman.png"></a>
-							<div class="middle aligned content">
-								<div class="header">Chris</div>
-							</div>
-						</div>
-						<div class="item">
-							<a class="ui mini image"><img src="./	images/man.png"></a>
-							<div class="middle aligned content">
-								<div class="header">Mike</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</br>
-		<div class="ui labeled input">
-			<div class="ui black label">Mike</div>
-			<input placeholder="Enter your text here" name="userText" type="text"></input>
-			<button class="ui floated right black submit button" id="sendButton">Send</button>
-		</div>
-	</div>
+	<div id="content"></div>
 </body>
 </html>
