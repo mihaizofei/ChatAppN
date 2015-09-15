@@ -1,10 +1,15 @@
+var data = [
+  {author: "Mike", text: "How artistic!", date: "Today at 5:42 PM",image: "./images/man.png" },
+  {author: "Chris", text: "This has been very useful for my research. Thanks as well!", date: "Yesterday at 10:20 AM",image: "./images/woman.png" }
+];
+
 var MainContainer = React.createClass({
 	render: function() {
 		return (
 			<div className='mainContainer'>
 				<Header name="Mike"/>
 				<div className="ui form segment">
-					<Body />
+					<Body data={this.props.data} />
 					<Footer name="Mike"/>
 				</div>
 			</div>
@@ -30,18 +35,20 @@ var Header = React.createClass({
 
 var Body = React.createClass({
 	render: function() {
+		var commentNodes = this.props.data.map(function (comment) {
+      			return (
+      				<Comment author={comment.author} date={comment.date} image={comment.image}>
+						{comment.text}
+					</Comment>
+      			);
+    		});
 		return (
 			<div className="ui two column equal height grid">
 				<div className="thirteen wide column">
 					<div className="ui message grey heightleft">
 						<div className="ui horizontal divider"><i className="wechat icon"></i></div>
 						<div className="ui comments">
-							<Comment author="Mike" date="Today at 5:42 PM" image="./images/man.png">
-								How artistic!
-							</Comment>
-							<Comment author="Chris" date="Yesterday at 10:20 AM" image="./images/woman.png">
-								This has been very useful for my research. Thanks as well!
-							</Comment>
+							{commentNodes}
 						</div>
 					</div>
 				</div>
@@ -126,11 +133,6 @@ var SendButton = React.createClass({
 });
 
 React.render(
-  <MainContainer />,
+  <MainContainer data={data}/>,
   document.getElementById('content')
 );
-
-var data = [
-  {author: "Mike", text: "This is one comment"},
-  {author: "Chris", text: "This is *another* comment"}
-];
