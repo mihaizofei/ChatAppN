@@ -1,15 +1,30 @@
-var data = [
-  {author: "Mike", text: "How artistic!", date: "Today at 5:42 PM",image: "./images/man.png" },
-  {author: "Chris", text: "This has been very useful for my research. Thanks as well!", date: "Yesterday at 10:20 AM",image: "./images/woman.png" }
-];
-
 var MainContainer = React.createClass({
+	loadCommentsFromServer: function() {
+    	$.ajax({
+      		url: this.props.url,
+      		dataType: 'json',
+      		cache: false,
+      		success: function(data) {
+        		this.setState({data: data});
+      		}.bind(this),
+      		error: function(xhr, status, err) {
+        		console.error(this.props.url, status, err.toString());
+      		}.bind(this)
+    	});
+  	},
+  	getInitialState: function() {
+    	return {data: []};
+  	},
+  	componentDidMount: function(){
+  		this.loadCommentsFromServer();
+  		setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  	},
 	render: function() {
 		return (
 			<div className='mainContainer'>
 				<Header name="Mike"/>
 				<div className="ui form segment">
-					<Body data={this.props.data} />
+					<Body data={this.state.data} />
 					<Footer name="Mike"/>
 				</div>
 			</div>
@@ -110,29 +125,39 @@ var Comment = React.createClass({
 });	
 
 var Footer = React.createClass({
+	handleSubmit: function(e) {
+		e.preventDefault();
+		var text = React.findDOMNode(this.refs.text).value.trim();
+		if (!text) {
+      		return;
+    	}
+    	React.findDOMNode(this.refs.text).value = '';
+	},
 	render: function() {
 		return (
-			<div className="ui labeled input">
-				<div className="ui black label">Mike</div>
-				<input placeholder="Enter your text here" name={this.props.name} type="text"></input>
-				<SendButton />
-			</div>
+			<form className="commentForm" onSubmit={this.handleSubmit}>
+				<div className="ui labeled input">
+					<div className="ui black label">Mike</div>
+					<input placeholder="Enter your text here" name={this.props.name} type="text" ref="text"></input>
+					<SendButton />
+				</div>
+			</form>
 		);
 	}
 });
 
 var SendButton = React.createClass({
-	handleClick: function(event) {
+		handleClick: function(event) {
 		sendButtonClick();
 	},
 	render: function(){
 		return (
-			<button onClick={this.handleClick} className="ui floated right black submit button" id="sendButton">Send</button>
+			<button onClick={this.handleClick} className="ui floated right black submit button" id="sendButton" type="submit">Send</button>
 		);
 	}
 });
 
 React.render(
-  <MainContainer data={data}/>,
+  <MainContainer url="comments.json" pollInterval="2000"/>,
   document.getElementById('content')
 );

@@ -1,4 +1,4 @@
-var data = [
-  {author: "Mike", text: "How artistic!", date: "Today at 5:42 PM",image: "./images/man.png" },
-  {author: "Chris", text: "This has been very useful for my research. Thanks as well!", date: "Yesterday at 10:20 AM",image: "./images/woman.png" }
-];
+[
+  {"author": "Mike", "text": "How artistic!", "date": "Today at 5:42 PM", "image": "./images/man.png" },
+  {"author": "Chris", "text": "This has been very useful for my research. Thanks as well!", "date": "Yesterday at 10:20 AM", "image": "./images/woman.png" }
+]
