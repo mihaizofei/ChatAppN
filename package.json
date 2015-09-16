@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mihaizofei/ChatAppN#readme",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "noty": "^2.3.6"
   }

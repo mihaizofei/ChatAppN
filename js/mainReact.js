@@ -12,6 +12,23 @@ var MainContainer = React.createClass({
       		}.bind(this)
     	});
   	},
+  	handleCommentSubmit: function(comment) {
+  		var comments = this.state.data;
+    	var newComments = comments.concat([comment]);
+    	this.setState({data: newComments});
+    	$.ajax({
+      		url: this.props.url,
+      		dataType: 'json',
+      		type: 'POST',
+      		data: comment,
+      		success: function(data) {
+        		this.setState({data: data});
+      		}.bind(this),
+      		error: function(xhr, status, err) {
+        		console.error(this.props.url, status, err.toString());
+      		}.bind(this)
+    	});
+  	},
   	getInitialState: function() {
     	return {data: []};
   	},
@@ -25,7 +42,7 @@ var MainContainer = React.createClass({
 				<Header name="Mike"/>
 				<div className="ui form segment">
 					<Body data={this.state.data} />
-					<Footer name="Mike"/>
+					<Footer name="Mike" onCommentSubmit={this.handleCommentSubmit}/>
 				</div>
 			</div>
 		);
@@ -131,6 +148,7 @@ var Footer = React.createClass({
 		if (!text) {
       		return;
     	}
+    	this.props.onCommentSubmit({author: "Mike", text: text, date: "Today at 5:42 PM", image: "./images/man.png"});
     	React.findDOMNode(this.refs.text).value = '';
 	},
 	render: function() {
@@ -158,6 +176,6 @@ var SendButton = React.createClass({
 });
 
 React.render(
-  <MainContainer url="comments.json" pollInterval="2000"/>,
+  <MainContainer url="./comments.json" pollInterval="2000"/>,
   document.getElementById('content')
 );
