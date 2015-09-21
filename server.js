@@ -4,18 +4,18 @@ var express = require('express');
  
 var server = express();
 
-server.use(express.static(__dirname));
+server.use(express.static(__dirname + '/dist'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
 
-server.get('/comments.json', function(req, res) {
+server.get('dist/comments.json', function(req, res) {
   fs.readFile('comments.json', function(err, data) {
     res.setHeader('Cache-Control', 'no-cache');
     res.json(JSON.parse(data));
   });
 });
 
-server.post('/comments.json', function(req, res) {
+server.post('dist/comments.json', function(req, res) {
   fs.readFile('comments.json', function(err, data) {
     var comments = JSON.parse(data);
     comments.push(req.body);
