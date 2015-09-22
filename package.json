@@ -19,6 +19,8 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
-    "noty": "^2.3.6"
+    "noty": "^2.3.6",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1"
   }
 }

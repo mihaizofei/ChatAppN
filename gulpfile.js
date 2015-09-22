@@ -20,7 +20,7 @@ var config = {
 }
 
 gulp.task('browserify', function() {
-    gulp.src('src/js/main.js')
+    gulp.src('src/js/mainReact.js')
       .pipe(browserify({transform:'reactify'}))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('dist/js'));
@@ -49,7 +49,7 @@ gulp.task('server', function (cb) {
   });
 })
 
-gulp.task('copy', ['copyNonJsFiles', 'copyJsFiles', 'copyNoty']);
+gulp.task('copy', ['copyNonJsFiles', 'browserify', 'copyNoty']);
 
 gulp.task('default', ['copy', 'server']);
 
