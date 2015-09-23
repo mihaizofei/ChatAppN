@@ -1,4 +1,6 @@
 var React = require('react');
+var AppActions = require('../actions/AppActions');
+var AppStore = require('../stores/AppStore');
 
 var MainContainer = React.createClass({
 	loadCommentsFromServer: function() {
@@ -152,6 +154,7 @@ var Footer = React.createClass({
     	}
     	this.props.onCommentSubmit({author: "Mike", text: text, date: "Today at 5:42 PM", image: "./images/man.png"});
     	React.findDOMNode(this.refs.text).value = '';
+    	AppActions.addComment(text);
 	},
 	render: function() {
 		return (
