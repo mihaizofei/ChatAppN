@@ -1,5 +1,6 @@
 var SendButton = require('./SendButton.js');
 var React = require('react');
+var AppActions = require('../actions/AppActions');
 
 var Footer = React.createClass({
 	handleSubmit: function(e) {

@@ -2,7 +2,6 @@ var Header = require('./Header.js');
 var Body = require('./Body.js');
 var Footer = require('./Footer.js');
 var React = require('react');
-var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var MainContainer = React.createClass({
