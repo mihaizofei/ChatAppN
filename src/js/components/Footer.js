@@ -1,6 +1,5 @@
 var SendButton = require('./SendButton.js');
 var React = require('react');
-var AppActions = require('../actions/AppActions');
 
 var Footer = React.createClass({
 	handleSubmit: function(e) {
@@ -9,9 +8,9 @@ var Footer = React.createClass({
 		if (!text) {
       		return;
     	}
-    	this.props.onCommentSubmit({author: this.props.name, text: text, date: GetDate(), image: this.props.image});
+    	var comment = {author: this.props.name, text: text, date: GetDate(), image: this.props.image}
+    	this.props.onCommentSubmit(comment);
     	React.findDOMNode(this.refs.text).value = '';
-    	AppActions.addComment(text);
 	},
 	render: function() {
 		return (
