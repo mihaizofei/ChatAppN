@@ -8,9 +8,6 @@ var Header = React.createClass({
       	<UserTab tabClass="active red item" iconClass="users icon">
       		All
       	</UserTab>
-      	<UserTab tabClass="red item" iconClass="user icon">
-      		Chris
-      	</UserTab>
 		<span className="floated right item">Signed in as<a href="#">{this.props.name}</a></span>
 	</div>
     );

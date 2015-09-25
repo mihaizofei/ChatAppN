@@ -48,7 +48,7 @@ var MainContainer = React.createClass({
 				<Header name="Mike"/>
 				<div className="ui form segment">
 					<Body data={this.state.data} />
-					<Footer name="Mike" onCommentSubmit={this.handleCommentSubmit}/>
+					<Footer name="Mike" image="./images/man.png" onCommentSubmit={this.handleCommentSubmit}/>
 				</div>
 			</div>
 		);

@@ -9,7 +9,7 @@ var Footer = React.createClass({
 		if (!text) {
       		return;
     	}
-    	this.props.onCommentSubmit({author: this.props.name, text: text, date: GetDate(), image: "./images/man.png"});
+    	this.props.onCommentSubmit({author: this.props.name, text: text, date: GetDate(), image: this.props.image});
     	React.findDOMNode(this.refs.text).value = '';
     	AppActions.addComment(text);
 	},
