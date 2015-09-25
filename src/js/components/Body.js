@@ -25,7 +25,6 @@ var Body = React.createClass({
 					<div className="ui message grey heightright">
 						<div className="ui horizontal divider"><i className="users icon"></i></div>
 						<div className="ui list">
-							<User name="Chris" image="./images/woman.png"/>
 							<User name="Mike" image="./images/man.png"/>
 						</div>
 					</div>
