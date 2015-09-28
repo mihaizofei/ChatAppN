@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+}
+
+.ui.grid {
+    height: 100%;    
+}
+
+.ui.form.segment {
+	border: none;
+	min-height: 92%;
+}
+
+.heightleft{
+    height:820px;
+}
+.heightright{
+    height:820px;
+}
+
+.ui.items>.item>.image+.content {
+	padding-left:0.3em;
+}
+
+a {
+	color: red;
+	padding-left: 5px;
+}
+
+.ui.labeled.input {
+	padding-top: 20px;
+}
+
+.ui.form.segment {
+	box-shadow:0 0 0 0;
+}
+
+.ui.message.grey {
+	overflow-y:auto;
+}
