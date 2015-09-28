@@ -1,2 +1,5 @@
 node_modules
 dist
+ChatApp/bin
+ChatApp/obj
+packages/
