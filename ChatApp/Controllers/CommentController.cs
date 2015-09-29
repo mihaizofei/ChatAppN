@@ -14,10 +14,7 @@ namespace ChatApp.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             } 
-            
-            // notify all connected clients 
             Hub.Clients.All.newComment(item); 
-            // return the item inside of a 201 response 
             return Request.CreateResponse(HttpStatusCode.Created, item); 
         }
     }
