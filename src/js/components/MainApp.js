@@ -7,7 +7,7 @@ var AppStore = require('../stores/AppStore');
 
 var MainContainer = React.createClass({
   	handleCommentSubmit: function(comment) {
-      AppActions.addComment(comment);
+      AppActions.sendCommentToServer(comment);
   	},
   	getInitialState: function() {
     	return {

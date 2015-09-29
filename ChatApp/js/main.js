@@ -20588,12 +20588,26 @@ module.exports = require('./lib/React');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
+var hub = $.connection.comments;
+$.connection.hub.start();
+hub.client.newComment = function (item) { 
+	var comment = {author: item.Author, text: item.Text, date: item.Date, image: item.Image}; 
+	AppActions.addComment(comment);
+};
+
 var AppActions = {
   addComment: function(comment){
     AppDispatcher.handleAction({
       actionType:AppConstants.ADD_COMMENT,
       comment: comment
-    })
+    });
+  },
+  sendCommentToServer: function(comment){
+     $.ajax({ 
+      url: "/api/comment",
+      data: comment, 
+      type: "POST" 
+    });
   }
 }
 
@@ -20743,7 +20757,7 @@ var AppStore = require('../stores/AppStore');
 
 var MainContainer = React.createClass({displayName: "MainContainer",
   	handleCommentSubmit: function(comment) {
-      AppActions.addComment(comment);
+      AppActions.sendCommentToServer(comment);
   	},
   	getInitialState: function() {
     	return {
