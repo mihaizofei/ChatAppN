@@ -3,3 +3,4 @@ dist
 ChatApp/bin
 ChatApp/obj
 packages/
+ChatApp/Properties/PublishProfiles/

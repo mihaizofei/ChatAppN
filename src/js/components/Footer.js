@@ -8,7 +8,8 @@ var Footer = React.createClass({
 		if (!text) {
       		return;
     	}
-    	var comment = {author: this.props.name, text: text, date: GetDate(), image: this.props.image}
+    	var userName = React.findDOMNode(this.refs.text).getAttribute('name');
+    	var comment = {author: userName, text: text, date: GetDate(), image: this.props.image}
     	this.props.onCommentSubmit(comment);
     	React.findDOMNode(this.refs.text).value = '';
 	},

@@ -4,6 +4,7 @@ var Footer = require('./Footer.js');
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
+var userName = getRandomName();
 
 var MainContainer = React.createClass({
   	handleCommentSubmit: function(comment) {
@@ -28,14 +29,18 @@ var MainContainer = React.createClass({
 	render: function() {
 		return (
 			<div className='mainContainer'>
-				<Header name="Mike"/>
+				<Header name={userName}/>
 				<div className="ui form segment">
-					<Body data={this.state.data} />
-					<Footer name="Mike" image="./images/man.png" onCommentSubmit={this.handleCommentSubmit}/>
+					<Body data={this.state.data} name={userName} />
+					<Footer name={userName} image="./images/man.png" onCommentSubmit={this.handleCommentSubmit}/>
 				</div>
 			</div>
 		);
 	}
 });
+
+function getRandomName() {
+    return "Guest_" + Math.floor((Math.random() * 100000) + 1);
+};
 
 module.exports = MainContainer;

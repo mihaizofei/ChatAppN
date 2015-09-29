@@ -20641,7 +20641,7 @@ var Body = React.createClass({displayName: "Body",
 					React.createElement("div", {className: "ui message grey heightright"}, 
 						React.createElement("div", {className: "ui horizontal divider"}, React.createElement("i", {className: "users icon"})), 
 						React.createElement("div", {className: "ui list"}, 
-							React.createElement(User, {name: "Mike", image: "./images/man.png"})
+							React.createElement(User, {name: this.props.name, image: "./images/man.png"})
 						)
 					)
 				)
@@ -20684,10 +20684,11 @@ var Footer = React.createClass({displayName: "Footer",
 	handleSubmit: function(e) {
 		e.preventDefault();
 		var text = React.findDOMNode(this.refs.text).value.trim();
+		var userName = React.findDOMNode(this.refs.text).getAttribute('name');
 		if (!text) {
       		return;
     	}
-    	var comment = {author: this.props.name, text: text, date: GetDate(), image: this.props.image}
+    	var comment = {author: userName, text: text, date: GetDate(), image: this.props.image}
     	this.props.onCommentSubmit(comment);
     	React.findDOMNode(this.refs.text).value = '';
 	},
@@ -20754,6 +20755,7 @@ var Footer = require('./Footer.js');
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
+var userName = getRandomName();
 
 var MainContainer = React.createClass({displayName: "MainContainer",
   	handleCommentSubmit: function(comment) {
@@ -20778,15 +20780,19 @@ var MainContainer = React.createClass({displayName: "MainContainer",
 	render: function() {
 		return (
 			React.createElement("div", {className: "mainContainer"}, 
-				React.createElement(Header, {name: "Mike"}), 
+				React.createElement(Header, {name: userName}), 
 				React.createElement("div", {className: "ui form segment"}, 
-					React.createElement(Body, {data: this.state.data}), 
-					React.createElement(Footer, {name: "Mike", image: "./images/man.png", onCommentSubmit: this.handleCommentSubmit})
+					React.createElement(Body, {data: this.state.data, name: userName}), 
+					React.createElement(Footer, {name: userName, image: "./images/man.png", onCommentSubmit: this.handleCommentSubmit})
 				)
 			)
 		);
 	}
 });
+
+function getRandomName() {
+    return "Guest_" + Math.floor((Math.random() * 100000) + 1);
+};
 
 module.exports = MainContainer;
 
