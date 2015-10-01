@@ -1,24 +1,24 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
-var hub = $.connection.comments;
+var hub = $.connection.messages;
 $.connection.hub.start();
-hub.client.newComment = function (item) { 
-	var comment = {author: item.Author, text: item.Text, date: item.Date, image: item.Image}; 
-	AppActions.addComment(comment);
+hub.client.newMessage = function (item) { 
+	var message = {author: item.Author, text: item.Text, date: item.Date, image: item.Image}; 
+	AppActions.addMessage(message);
 };
 
 var AppActions = {
-  addComment: function(comment){
+  addMessage: function(message){
     AppDispatcher.handleAction({
-      actionType:AppConstants.ADD_COMMENT,
-      comment: comment
+      actionType:AppConstants.ADD_MESSAGE,
+      message: message
     });
   },
-  sendCommentToServer: function(comment){
+  sendMessageToServer: function(message){
      $.ajax({ 
-      url: "/api/comment",
-      data: comment, 
+      url: "/api/message",
+      data: message, 
       type: "POST" 
     });
   }

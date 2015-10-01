@@ -20588,24 +20588,24 @@ module.exports = require('./lib/React');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
-var hub = $.connection.comments;
+var hub = $.connection.messages;
 $.connection.hub.start();
-hub.client.newComment = function (item) { 
-	var comment = {author: item.Author, text: item.Text, date: item.Date, image: item.Image}; 
-	AppActions.addComment(comment);
+hub.client.newMessage = function (item) { 
+	var message = {author: item.Author, text: item.Text, date: item.Date, image: item.Image}; 
+	AppActions.addMessage(message);
 };
 
 var AppActions = {
-  addComment: function(comment){
+  addMessage: function(message){
     AppDispatcher.handleAction({
-      actionType:AppConstants.ADD_COMMENT,
-      comment: comment
+      actionType:AppConstants.ADD_MESSAGE,
+      message: message
     });
   },
-  sendCommentToServer: function(comment){
+  sendMessageToServer: function(message){
      $.ajax({ 
-      url: "/api/comment",
-      data: comment, 
+      url: "/api/message",
+      data: message, 
       type: "POST" 
     });
   }
@@ -20614,16 +20614,16 @@ var AppActions = {
 module.exports = AppActions
 
 },{"../constants/AppConstants":171,"../dispatcher/AppDispatcher":172}],163:[function(require,module,exports){
-var Comment = require('./Comment.js');
+var Message = require('./Message.js');
 var User = require('./User.js');
 var React = require('react');
 
 var Body = React.createClass({displayName: "Body",
 	render: function() {
-		var commentNodes = this.props.data.map(function (comment) {
+		var messageNodes = this.props.data.map(function (message) {
       			return (
-      				React.createElement(Comment, {author: comment.author, date: comment.date, image: comment.image}, 
-						comment.text
+      				React.createElement(Message, {author: message.author, date: message.date, image: message.image}, 
+						message.text
 					)
       			);
     		});
@@ -20633,7 +20633,7 @@ var Body = React.createClass({displayName: "Body",
 					React.createElement("div", {className: "ui message grey heightleft"}, 
 						React.createElement("div", {className: "ui horizontal divider"}, React.createElement("i", {className: "wechat icon"})), 
 						React.createElement("div", {className: "ui comments"}, 
-							commentNodes
+							messageNodes
 						)
 					)
 				), 
@@ -20652,31 +20652,7 @@ var Body = React.createClass({displayName: "Body",
 
 module.exports = Body;
 
-},{"./Comment.js":164,"./User.js":169,"react":161}],164:[function(require,module,exports){
-var React = require('react');
-
-var Comment = React.createClass({displayName: "Comment",
-	render: function() {
-		return (
-			React.createElement("div", {className: "comment"}, 
-				React.createElement("a", {className: "avatar"}, 
-					React.createElement("img", {src: this.props.image})
-				), 
-				React.createElement("div", {className: "content"}, 
-					React.createElement("a", {className: "author"}, this.props.author), 
-					React.createElement("div", {className: "metadata"}, 
-						React.createElement("span", {className: "date"}, this.props.date)
-					), 
-					React.createElement("div", {className: "text"}, this.props.children)
-				)
-			)	
-		);
-	}
-});	
-
-module.exports = Comment;
-
-},{"react":161}],165:[function(require,module,exports){
+},{"./Message.js":167,"./User.js":169,"react":161}],164:[function(require,module,exports){
 var SendButton = require('./SendButton.js');
 var React = require('react');
 
@@ -20684,17 +20660,17 @@ var Footer = React.createClass({displayName: "Footer",
 	handleSubmit: function(e) {
 		e.preventDefault();
 		var text = React.findDOMNode(this.refs.text).value.trim();
-		var userName = React.findDOMNode(this.refs.text).getAttribute('name');
 		if (!text) {
       		return;
     	}
-    	var comment = {author: userName, text: text, date: GetDate(), image: this.props.image}
-    	this.props.onCommentSubmit(comment);
+    	var userName = React.findDOMNode(this.refs.text).getAttribute('name');
+    	var message = {author: userName, text: text, date: GetDate(), image: this.props.image}
+    	this.props.onMessageSubmit(message);
     	React.findDOMNode(this.refs.text).value = '';
 	},
 	render: function() {
 		return (
-			React.createElement("form", {className: "commentForm", onSubmit: this.handleSubmit}, 
+			React.createElement("form", {className: "messageForm", onSubmit: this.handleSubmit}, 
 				React.createElement("div", {className: "ui labeled input"}, 
 					React.createElement("div", {className: "ui black label"}, this.props.name), 
 					React.createElement("input", {placeholder: "Enter your text here", name: this.props.name, type: "text", ref: "text"}), 
@@ -20729,7 +20705,7 @@ function AddZero(val) {
 
 module.exports = Footer;
 
-},{"./SendButton.js":168,"react":161}],166:[function(require,module,exports){
+},{"./SendButton.js":168,"react":161}],165:[function(require,module,exports){
 var UserTab = require('./UserTab.js');
 var React = require('react');
 
@@ -20748,7 +20724,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"./UserTab.js":170,"react":161}],167:[function(require,module,exports){
+},{"./UserTab.js":170,"react":161}],166:[function(require,module,exports){
 var Header = require('./Header.js');
 var Body = require('./Body.js');
 var Footer = require('./Footer.js');
@@ -20758,8 +20734,8 @@ var AppStore = require('../stores/AppStore');
 var userName = getRandomName();
 
 var MainContainer = React.createClass({displayName: "MainContainer",
-  	handleCommentSubmit: function(comment) {
-      AppActions.sendCommentToServer(comment);
+  	handleMessageSubmit: function(message) {
+      AppActions.sendMessageToServer(message);
   	},
   	getInitialState: function() {
     	return {
@@ -20783,7 +20759,7 @@ var MainContainer = React.createClass({displayName: "MainContainer",
 				React.createElement(Header, {name: userName}), 
 				React.createElement("div", {className: "ui form segment"}, 
 					React.createElement(Body, {data: this.state.data, name: userName}), 
-					React.createElement(Footer, {name: userName, image: "./images/man.png", onCommentSubmit: this.handleCommentSubmit})
+					React.createElement(Footer, {name: userName, image: "./images/man.png", onMessageSubmit: this.handleMessageSubmit})
 				)
 			)
 		);
@@ -20796,7 +20772,31 @@ function getRandomName() {
 
 module.exports = MainContainer;
 
-},{"../actions/AppActions":162,"../stores/AppStore":174,"./Body.js":163,"./Footer.js":165,"./Header.js":166,"react":161}],168:[function(require,module,exports){
+},{"../actions/AppActions":162,"../stores/AppStore":174,"./Body.js":163,"./Footer.js":164,"./Header.js":165,"react":161}],167:[function(require,module,exports){
+var React = require('react');
+
+var Message = React.createClass({displayName: "Message",
+	render: function() {
+		return (
+			React.createElement("div", {className: "comment"}, 
+				React.createElement("a", {className: "avatar"}, 
+					React.createElement("img", {src: this.props.image})
+				), 
+				React.createElement("div", {className: "content"}, 
+					React.createElement("a", {className: "author"}, this.props.author), 
+					React.createElement("div", {className: "metadata"}, 
+						React.createElement("span", {className: "date"}, this.props.date)
+					), 
+					React.createElement("div", {className: "text"}, this.props.children)
+				)
+			)	
+		);
+	}
+});	
+
+module.exports = Message;
+
+},{"react":161}],168:[function(require,module,exports){
 var React = require('react');
 
 var SendButton = React.createClass({displayName: "SendButton",
@@ -20860,7 +20860,7 @@ module.exports = UserTab;
 
 },{"react":161}],171:[function(require,module,exports){
 module.exports = {
-  ADD_COMMENT: 'ADD_COMMENT'
+  ADD_MESSAGE: 'ADD_MESSAGE'
 };
 
 },{}],172:[function(require,module,exports){
@@ -20884,11 +20884,11 @@ var React = require('react');
 var MainContainer = require('./components/MainApp.js');
 
 React.render(
-  React.createElement(MainContainer, {url: "./comments.json", pollInterval: "2000"}),
+  React.createElement(MainContainer, null),
   document.getElementById('content')
 );
 
-},{"./components/MainApp.js":167,"react":161}],174:[function(require,module,exports){
+},{"./components/MainApp.js":166,"react":161}],174:[function(require,module,exports){
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var EventEmitter = require('events').EventEmitter;
@@ -20900,8 +20900,8 @@ var _store = {
   list: []
 };
 
-var addComment= function(comment){
-  _store.list.push(comment);
+var addMessage= function(message){
+  _store.list.push(message);
 };
 
 var AppStore = assign({}, EventEmitter.prototype, {
@@ -20919,8 +20919,8 @@ var AppStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch(action.actionType) {
-  	case AppConstants.ADD_COMMENT:
-  		addComment(action.comment);
+  	case AppConstants.ADD_MESSAGE:
+  		addMessage(action.message);
   		AppStore.emit(CHANGE_EVENT);
   		break;
   	default:

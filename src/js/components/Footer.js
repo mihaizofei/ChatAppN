@@ -9,13 +9,13 @@ var Footer = React.createClass({
       		return;
     	}
     	var userName = React.findDOMNode(this.refs.text).getAttribute('name');
-    	var comment = {author: userName, text: text, date: GetDate(), image: this.props.image}
-    	this.props.onCommentSubmit(comment);
+    	var message = {author: userName, text: text, date: GetDate(), image: this.props.image}
+    	this.props.onMessageSubmit(message);
     	React.findDOMNode(this.refs.text).value = '';
 	},
 	render: function() {
 		return (
-			<form className="commentForm" onSubmit={this.handleSubmit}>
+			<form className="messageForm" onSubmit={this.handleSubmit}>
 				<div className="ui labeled input">
 					<div className="ui black label">{this.props.name}</div>
 					<input placeholder="Enter your text here" name={this.props.name} type="text" ref="text"></input>

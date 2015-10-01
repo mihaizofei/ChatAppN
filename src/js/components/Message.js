@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Comment = React.createClass({
+var Message = React.createClass({
 	render: function() {
 		return (
 			<div className="comment">
@@ -19,4 +19,4 @@ var Comment = React.createClass({
 	}
 });	
 
-module.exports = Comment;
+module.exports = Message;

@@ -7,8 +7,8 @@ var AppStore = require('../stores/AppStore');
 var userName = getRandomName();
 
 var MainContainer = React.createClass({
-  	handleCommentSubmit: function(comment) {
-      AppActions.sendCommentToServer(comment);
+  	handleMessageSubmit: function(message) {
+      AppActions.sendMessageToServer(message);
   	},
   	getInitialState: function() {
     	return {
@@ -32,7 +32,7 @@ var MainContainer = React.createClass({
 				<Header name={userName}/>
 				<div className="ui form segment">
 					<Body data={this.state.data} name={userName} />
-					<Footer name={userName} image="./images/man.png" onCommentSubmit={this.handleCommentSubmit}/>
+					<Footer name={userName} image="./images/man.png" onMessageSubmit={this.handleMessageSubmit}/>
 				</div>
 			</div>
 		);

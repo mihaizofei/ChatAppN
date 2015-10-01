@@ -1,14 +1,14 @@
-var Comment = require('./Comment.js');
+var Message = require('./Message.js');
 var User = require('./User.js');
 var React = require('react');
 
 var Body = React.createClass({
 	render: function() {
-		var commentNodes = this.props.data.map(function (comment) {
+		var messageNodes = this.props.data.map(function (message) {
       			return (
-      				<Comment author={comment.author} date={comment.date} image={comment.image}>
-						{comment.text}
-					</Comment>
+      				<Message author={message.author} date={message.date} image={message.image}>
+						{message.text}
+					</Message>
       			);
     		});
 		return (
@@ -17,7 +17,7 @@ var Body = React.createClass({
 					<div className="ui message grey heightleft">
 						<div className="ui horizontal divider"><i className="wechat icon"></i></div>
 						<div className="ui comments">
-							{commentNodes}
+							{messageNodes}
 						</div>
 					</div>
 				</div>

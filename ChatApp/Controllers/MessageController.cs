@@ -5,7 +5,7 @@ using ChatApp.Models;
 
 namespace ChatApp.Controllers
 {
-    public class CommentController : SignalRBase<CommentHub>
+    public class MessageController : SignalRBase<MessageHub>
     {
         // POST api/<controller> 
         public HttpResponseMessage Post(Comment item) 
@@ -14,7 +14,7 @@ namespace ChatApp.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             } 
-            Hub.Clients.All.newComment(item); 
+            Hub.Clients.All.newMessage(item); 
             return Request.CreateResponse(HttpStatusCode.Created, item); 
         }
     }

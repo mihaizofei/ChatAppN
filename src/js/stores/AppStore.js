@@ -9,8 +9,8 @@ var _store = {
   list: []
 };
 
-var addComment= function(comment){
-  _store.list.push(comment);
+var addMessage= function(message){
+  _store.list.push(message);
 };
 
 var AppStore = assign({}, EventEmitter.prototype, {
@@ -28,8 +28,8 @@ var AppStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch(action.actionType) {
-  	case AppConstants.ADD_COMMENT:
-  		addComment(action.comment);
+  	case AppConstants.ADD_MESSAGE:
+  		addMessage(action.message);
   		AppStore.emit(CHANGE_EVENT);
   		break;
   	default:
